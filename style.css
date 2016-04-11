@@ -108,14 +108,14 @@ body {
 .robot {
   position: absolute;
   width: 80px;
-  transition: all 0.01s;
+  /*transition: all 0.01s;*/
 }
 .robot-img {
   display: block;
   width: 100%;
-  transition: all 0.01s;
+  /*transition: all 0.01s;*/
 }
 .robot.preview {
   opacity: 0.5;
-  transition: all 0.005s ease-out;
+  /*transition: all 0.005s ease-out;*/
 }

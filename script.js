@@ -8,34 +8,43 @@ var hoverX, hoverY;
 var robotX = PLAYGROUND_HEIGHT / 5 - ROBOT_SIZE / 2;
 var robotY = PLAYGROUND_WIDTH / 5 - ROBOT_SIZE / 2;
 var targetX, targetY;
-
-var robotA = 0;
-var targetA, hoverA;
 var intervalsM = 0;
+
+var hoverA, targetA;
+var robotA = 0;
 var intervalsA = 0;
-var moving = false;
+
 var moveOperations = [];
 
+$("#robot-preview").hide();
 moveTo("#robot", robotX, robotY);
 
-$("#playground").on("mouseenter", function(event) {
+$("#playground").on("touchstart", function(e) {
+  hover(e.changedTouches[0].pageX, e.changedTouches[0].pageY);
+});
+$("#playground").on("move", function(e) {
+  hover(e.pageX, e.pageY);
+});
+$("#playground").on("touchend", function(e) {
+  startMoving();
+});
+$("#playground").on("moveend", function(e) {
+  startMoving();
+});
+
+function hover(pX, pY) {
   $("#robot-preview").show();
-});
-$("#playground").on("mouseleave", function(event) {
-  $("#robot-preview").hide();
-});
-$("#playground").on("mousemove", function(event) {
   var rect = $("#playground").get(0).getBoundingClientRect();
-  hoverX = event.pageX - rect.left - ROBOT_SIZE / 2;
-  hoverY = event.pageY - rect.top - ROBOT_SIZE / 2;
+  hoverX = pX - rect.left - ROBOT_SIZE / 2;
+  hoverY = pY - rect.top - ROBOT_SIZE / 2;
   hoverA = Math.atan((hoverY - robotY)/(hoverX - robotX));
   if (hoverX - robotX < 0) hoverA += Math.PI;
 
   moveTo("#robot-preview", hoverX, hoverY);
   rotateTo("#robot-preview .robot-img", hoverA);
-});
+}
 
-$("#playground").on("mouseup", function(event) {
+function startMoving() {
   console.log("robot moves");
   targetX = hoverX;
   targetY = hoverY;
@@ -57,7 +66,7 @@ $("#playground").on("mouseup", function(event) {
     1000;
   moveOperations.push(moveId);
   moveRobot(targetX, targetY, targetA, intervalsA, intervalsM, moveId);
-});
+}
 
 function moveRobot(x, y, a, inA, inM, moveId) {
   if (moveOperations[moveOperations.length - 1] === moveId) {
