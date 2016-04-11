@@ -8,8 +8,9 @@ var hoverX, hoverY;
 var robotX = PLAYGROUND_HEIGHT / 5 - ROBOT_SIZE / 2;
 var robotY = PLAYGROUND_WIDTH / 5 - ROBOT_SIZE / 2;
 var targetX, targetY;
+
 var robotA = 0;
-var targetA;
+var targetA, hoverA;
 var intervalsM = 0;
 var intervalsA = 0;
 var moving = false;
@@ -17,13 +18,21 @@ var moveOperations = [];
 
 moveTo("#robot", robotX, robotY);
 
+$("#playground").on("mouseenter", function(event) {
+  $("#robot-preview").show();
+});
+$("#playground").on("mouseleave", function(event) {
+  $("#robot-preview").hide();
+});
 $("#playground").on("mousemove", function(event) {
   var rect = $("#playground").get(0).getBoundingClientRect();
   hoverX = event.pageX - rect.left - ROBOT_SIZE / 2;
   hoverY = event.pageY - rect.top - ROBOT_SIZE / 2;
-  // console.log("move", hoverX, hoverY);
-  // console.log("chtouc", event.changedTouches);
+  hoverA = Math.atan((hoverY - robotY)/(hoverX - robotX));
+  if (hoverX - robotX < 0) hoverA += Math.PI;
+
   moveTo("#robot-preview", hoverX, hoverY);
+  rotateTo("#robot-preview .robot-img", hoverA);
 });
 
 $("#playground").on("mouseup", function(event) {
