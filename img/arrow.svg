@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="211.66667mm"
+   height="211.66667mm"
+   viewBox="0 0 750.00005 750.00001"
+   id="svg3915"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="arrow.svg">
+  <defs
+     id="defs3917">
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="marker-arrow-head"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM">
+      <path
+         inkscape:connector-curvature="0"
+         transform="scale(0.4,0.4)"
+         style="fill:#d86e3b;fill-opacity:1;fill-rule:evenodd;stroke:#d86e3b;stroke-width:1pt;"
+         d="m 5.77,0 -8.65,5 0,-10 8.65,5 z"
+         id="arrow-head" />
+    </marker>
+  </defs>
+  <g
+     inkscape:label="Tavolo 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(221.32704,-21.564417)">
+    <path
+       inkscape:connector-curvature="0"
+       id="path3826"
+       d="M -120,180 390,420"
+       style="stroke:#d86e3b;
+       stroke-width:5;
+       stroke-linecap:butt;
+       stroke-linejoin:miter;
+       marker-end:url(#marker-arrow-head)"
+       sodipodi:nodetypes="cc" />
+  </g>
+</svg>

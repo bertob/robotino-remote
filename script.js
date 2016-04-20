@@ -3,10 +3,12 @@ var PLAYGROUND_WIDTH = 730;
 var ROBOT_SIZE = 80;
 var MOVEMENT_UNIT = 2;
 var ROTATION_UNIT = 0.02;
+var MOVEMENT_SPEED = 150;
+var ROTATION_SPEED = 40;
 
 var hoverX, hoverY;
-var robotX = PLAYGROUND_HEIGHT / 5 - ROBOT_SIZE / 2;
-var robotY = PLAYGROUND_WIDTH / 5 - ROBOT_SIZE / 2;
+var robotX = 0;
+var robotY = 0;
 var targetX, targetY;
 var intervalsM = 0;
 
@@ -52,18 +54,33 @@ function startMoving() {
   dX = targetX - robotX;
   dY = targetY - robotY;
 
+  if (robotA < 0) {
+    robotA = (2*Math.PI - Math.abs(robotA));
+  }
+
   targetA = Math.atan(dY/dX);
   if (targetA > Math.PI)
-    targetA = 2 * Math.PI - targetA;
+    targetA = 2 * Math.PI - Math.abs(targetA);
   if (dX < 0)
     targetA += Math.PI;
+  if (dX > 0 && dY < 0)
+    targetA += 2*Math.PI;
+
+  if (Math.abs(targetA - robotA) > Math.PI) {
+    targetA = -(2*Math.PI - Math.abs(targetA));
+    if (Math.abs((robotA - targetA + 2*Math.PI) % (2*Math.PI)) > Math.PI) {
+      if (targetA > 2*Math.PI) {
+        targetA = targetA % (2*Math.PI);
+      }
+    }
+  }
+
   intervalsA = (targetA - robotA) / ROTATION_UNIT;
 
   var length = Math.abs(dY / Math.sin(targetA));
   intervalsM = length / MOVEMENT_UNIT;
 
-  var moveId = "mov_" + targetX + "_" + targetY + "_" + Math.random() *
-    1000;
+  var moveId = "mov_" + targetX + "_" + targetY + "_" + Math.random() * 1000;
   moveOperations.push(moveId);
   moveRobot(targetX, targetY, targetA, intervalsA, intervalsM, moveId);
 }
@@ -77,14 +94,26 @@ function moveRobot(x, y, a, inA, inM, moveId) {
         robotA += ROTATION_UNIT * f;
         rotateTo("#robot .robot-img", robotA);
 
+        if (inA < 0) {
+          robot(0, 0, ROTATION_SPEED);
+        }
+        else {
+          robot(0, 0, -ROTATION_SPEED);
+        }
+
         moveRobot(targetX, targetY, a, inA - f, inM, moveId);
       } else {
         var k = (inM < 1) ? inM : 1;
         robotX += MOVEMENT_UNIT * Math.cos(a) * k;
         robotY += MOVEMENT_UNIT * Math.sin(a) * k;
         moveTo("#robot", robotX, robotY);
+
+        robot(MOVEMENT_SPEED, 0, 0);
+
         if (inM - 1 > 0)
           moveRobot(targetX, targetY, a, 0, inM - 1, moveId);
+        else
+          robot(0, 0, 0);
       }
 
     }, 15);
@@ -101,4 +130,10 @@ function rotateTo(id, a) {
   $(id).css({
     "transform": "rotate(" + a + "rad)"
   });
+}
+
+function robot(x, y, r) {
+  $.post(
+    "http://127.0.0.1:1337/x" + x + "y" + y + "r" + r
+  );
 }
