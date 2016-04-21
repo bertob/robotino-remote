@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="25.4mm"
+   height="25.4mm"
+   viewBox="0 0 89.999999 89.999998"
+   id="svg4515"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="rot-cl.svg">
+  <defs
+     id="defs4517" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="3.959798"
+     inkscape:cx="7.6998138"
+     inkscape:cy="18.651851"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:window-width="1366"
+     inkscape:window-height="741"
+     inkscape:window-x="0"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1"
+     inkscape:snap-bbox="true"
+     inkscape:bbox-paths="true"
+     inkscape:snap-page="true"
+     inkscape:snap-bbox-midpoints="true"
+     inkscape:snap-bbox-edge-midpoints="true"
+     inkscape:bbox-nodes="true"
+     inkscape:object-paths="true"
+     inkscape:snap-intersection-paths="true"
+     inkscape:snap-center="true"
+     inkscape:snap-object-midpoints="true">
+    <inkscape:grid
+       type="xygrid"
+       id="grid3347" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata4520">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Tavolo 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-897.85712,-95.933632)">
+    <g
+       id="g3343"
+       inkscape:transform-center-x="4.060101"
+       inkscape:transform-center-y="-0.67001223"
+       transform="matrix(-1,0,0,1,1885.7138,0)">
+      <path
+         transform="scale(-1,-1)"
+         sodipodi:open="true"
+         d="m -974.68701,-142.76363 a 31.830017,31.830019 0 0 1 27.67537,-31.55771 31.830017,31.830019 0 0 1 34.90008,23.3195 31.830017,31.830019 0 0 1 -18.56462,37.64532 31.830017,31.830019 0 0 1 -39.74642,-13.4921"
+         sodipodi:end="2.6179939"
+         sodipodi:start="3.1415927"
+         sodipodi:ry="31.830019"
+         sodipodi:rx="31.830017"
+         sodipodi:cy="-142.76363"
+         sodipodi:cx="-942.85699"
+         sodipodi:type="arc"
+         id="path6441"
+         style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;color-interpolation:sRGB;color-interpolation-filters:linearRGB;fill:none;fill-opacity:1;fill-rule:nonzero;stroke:#666666;stroke-width:4;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path6443"
+         d="m 982.80705,143.2417 -16.2474,0 8.1237,-11.17 z"
+         style="fill:#666666;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    </g>
+    <g
+       transform="matrix(0.77777691,0,0,0.77777696,-2977.1388,-3585.8998)"
+       id="g6445">
+      <g
+         transform="matrix(0.40909134,0,0,0.40909134,2940.7213,2891.6935)"
+         id="g6447">
+        <ellipse
+           style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;color-interpolation:sRGB;color-interpolation-filters:linearRGB;fill:#e8422b;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:6;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0.80000001;stroke-opacity:1;marker:none;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
+           id="ellipse6449"
+           cx="5131.5649"
+           cy="4652.1855"
+           rx="55"
+           ry="55.000011" />
+        <ellipse
+           ry="9.9999924"
+           rx="9.9999943"
+           cy="4652.1855"
+           cx="5161.4937"
+           id="ellipse6451"
+           style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;color-interpolation:sRGB;color-interpolation-filters:linearRGB;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#333333;stroke-width:6;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0.80000001;stroke-opacity:1;marker:none;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate" />
+      </g>
+      <path
+         inkscape:connector-curvature="0"
+         id="path6453"
+         d="m 5045,4772.9252 0,43.8742"
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.98741281px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    </g>
+  </g>
+</svg>

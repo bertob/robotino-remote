@@ -48,6 +48,10 @@ button:active {
 ::-moz-focus-inner {
   border: 0;
 }
+.button, .knob {
+  box-shadow: 0 4px 7px rgba(0,0,0,0.2);
+  border: 1px solid #aaa;
+}
 
 /* LAYOUT */
 body {
@@ -67,12 +71,32 @@ body {
   width: 220px;
   margin-top: 45px;
 }
-.playground {
-  margin-top: 55px;
+.touchpad {
+  position: relative;
+  height: 600px;
+  width: 600px;
+  margin-top: 95px;
   margin-left: 60px;
-  background-image: url(img/corners.svg);
-  background-size: cover;
+  color: #d8d8d8;
+  border: 1px solid #aaa;
+  background-color: #f2f2f2;
+  border-radius: 3000px;
 }
+.knob {
+  position: absolute;
+  top: calc(50% - 60px);
+  left: calc(50% - 60px);
+  width: 120px;
+  height: 120px;
+  background-color: #d8d8d8;
+  background-image: url(img/move.svg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 90px;
+  border-radius: 500px;
+  cursor: pointer;
+}
+
 .button-group.move {
   display: flex;
   flex-direction: column;
@@ -101,8 +125,8 @@ body {
   background-position: center center;
   background-size: 80px;
 }
-#rot180-button {background-image: url(img/rot180.svg);}
-#rot360-button {background-image: url(img/rot360.svg);}
+#rot-cl-button {background-image: url(img/rot-cl.svg);}
+#rot-ccl-button {background-image: url(img/rot-ccl.svg);}
 #wiggle-button {background-image: url(img/wiggle.svg);}
 
 .sound .button {
@@ -111,15 +135,4 @@ body {
   display: block;
   height: 80%;
   margin: 10px auto;
-}
-
-.robot {
-  position: absolute;
-}
-.robot-img {
-  display: block;
-  width: 100%;
-}
-.robot.preview {
-  opacity: 0.5;
 }
