@@ -1,9 +1,15 @@
-var PLAYGROUND_HEIGHT = 730;
-var PLAYGROUND_WIDTH = 730;
-var ROBOT_SIZE = 80;
-var MOVEMENT_UNIT = 2;
-var ROTATION_UNIT = 0.02;
-var MOVEMENT_SPEED = 150;
+var PLAYGROUND_REAL_SIZE = 200; //cm
+var ROBOT_REAL_SIZE = 35; //cm
+var PLAYGROUND_HEIGHT = 680;
+var PLAYGROUND_WIDTH = 680;
+var ROBOT_SIZE = (ROBOT_REAL_SIZE/PLAYGROUND_REAL_SIZE) * PLAYGROUND_WIDTH;
+$("#playground").css("width", PLAYGROUND_WIDTH + "px");
+$("#playground").css("height", PLAYGROUND_HEIGHT + "px");
+$("#robot").css("width", ROBOT_SIZE + "px");
+
+var MOVEMENT_UNIT = 1.6;
+var ROTATION_UNIT = 0.09; ///1.1;
+var MOVEMENT_SPEED = 290; //*1.17;
 var ROTATION_SPEED = 40;
 
 var hoverX, hoverY;
@@ -21,6 +27,10 @@ var moveOperations = [];
 $("#robot-preview").hide();
 moveTo("#robot", robotX, robotY);
 
+$("#wiggle-button").on("click", function(e) {
+  wiggle();
+});
+
 $("#playground").on("touchstart", function(e) {
   hover(e.changedTouches[0].pageX, e.changedTouches[0].pageY);
 });
@@ -28,10 +38,10 @@ $("#playground").on("move", function(e) {
   hover(e.pageX, e.pageY);
 });
 $("#playground").on("touchend", function(e) {
-  startMoving();
+  startMoving(hoverX, hoverY);
 });
 $("#playground").on("moveend", function(e) {
-  startMoving();
+  startMoving(hoverX, hoverY);
 });
 
 function hover(pX, pY) {
@@ -46,10 +56,10 @@ function hover(pX, pY) {
   rotateTo("#robot-preview .robot-img", hoverA);
 }
 
-function startMoving() {
+function startMoving(hX, hY) {
   console.log("robot moves");
-  targetX = hoverX;
-  targetY = hoverY;
+  targetX = hX;
+  targetY = hY;
 
   dX = targetX - robotX;
   dY = targetY - robotY;
@@ -74,18 +84,19 @@ function startMoving() {
       }
     }
   }
+  // if ((robotA > Math.PI) && (robotA > targetA + Math.PI)) {
+  //   robotA = -(2*Math.PI - robotA);
+  // }
 
   intervalsA = (targetA - robotA) / ROTATION_UNIT;
 
   var length = Math.abs(dY / Math.sin(targetA));
   intervalsM = length / MOVEMENT_UNIT;
 
-  var moveId = "mov_" + targetX + "_" + targetY + "_" + Math.random() * 1000;
-  moveOperations.push(moveId);
-  moveRobot(targetX, targetY, targetA, intervalsA, intervalsM, moveId);
+  moveRobot(targetA, intervalsA, intervalsM, newMoveId());
 }
 
-function moveRobot(x, y, a, inA, inM, moveId) {
+function moveRobot(a, inA, inM, moveId) {
   if (moveOperations[moveOperations.length - 1] === moveId) {
     setTimeout(function() {
       if (Math.abs(inA) > 0.4) {
@@ -101,7 +112,7 @@ function moveRobot(x, y, a, inA, inM, moveId) {
           robot(0, 0, -ROTATION_SPEED);
         }
 
-        moveRobot(targetX, targetY, a, inA - f, inM, moveId);
+        moveRobot(a, inA - f, inM, moveId);
       } else {
         var k = (inM < 1) ? inM : 1;
         robotX += MOVEMENT_UNIT * Math.cos(a) * k;
@@ -111,13 +122,46 @@ function moveRobot(x, y, a, inA, inM, moveId) {
         robot(MOVEMENT_SPEED, 0, 0);
 
         if (inM - 1 > 0)
-          moveRobot(targetX, targetY, a, 0, inM - 1, moveId);
+          moveRobot(a, 0, inM - 1, moveId);
         else
           robot(0, 0, 0);
       }
 
     }, 15);
   }
+}
+
+function moveRobotSideways(a, inM, moveId) {
+  if (moveOperations[moveOperations.length - 1] === moveId) {
+    console.log("yolooooo");
+    setTimeout(function() {
+      var k = (Math.abs(inM) < 0.4) ? inM : sign(inM)*1;
+      robotX += MOVEMENT_UNIT * Math.cos(a) * k;
+      robotY += MOVEMENT_UNIT * Math.sin(a) * k;
+      moveTo("#robot", robotX, robotY);
+
+      robot(MOVEMENT_SPEED, 0, 0);
+
+      if (inM - 1 > 0)
+        moveRobot(a, 0, inM - k, moveId);
+      else
+        robot(0, 0, 0);
+
+    }, 15);
+  }
+}
+
+function wiggle() {
+  moveRobotSideways(robotA - Math.PI/2, -50, newMoveId());
+  setTimeout(function() {
+    moveRobotSideways(robotA + Math.PI/2, +50, newMoveId());
+    setTimeout(function() {
+      moveRobotSideways(robotA - Math.PI/2, -50, newMoveId());
+      setTimeout(function() {
+        moveRobotSideways(robotA + Math.PI/2, +50, newMoveId());
+      }, 760);
+    }, 760);
+  }, 760);
 }
 
 function moveTo(id, x, y) {
@@ -134,6 +178,15 @@ function rotateTo(id, a) {
 
 function robot(x, y, r) {
   $.post(
-    "http://127.0.0.1:1337/x" + x + "y" + y + "r" + r
+    "http://172.26.201.2:1337/x" + x + "y" + y + "r" + r
   );
 }
+
+function newMoveId() {
+  var moveId = "mov_" + Math.random() * 1000;
+  moveOperations.push(moveId);
+  console.log("id", moveId, moveOperations);
+  return moveId;
+}
+
+function sign(x) { return x > 0 ? 1 : x < 0 ? -1 : 0; }
