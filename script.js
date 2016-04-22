@@ -1,4 +1,4 @@
-var MOV_SPEED = 200;
+var MOV_SPEED = 500;
 var ROT_SPEED = 40;
 var TOUCHPAD_SIZE = 600;
 var MAX_X = 300;
@@ -16,8 +16,11 @@ $("#rot-ccl-button").on("touchstart", function(e) {
 $("#wiggle-button").on("touchstart", function(e) {
   wiggle();
 });
-$("#wiggle-button, #rot-cl-button, rot-ccl-button").on("touchend", function(e) {
+$("#wiggle-button, #rot-cl-button, #rot-ccl-button").on("touchend", function(e) {
   move(0, 0);
+  setTimeout(function() {
+    move(0, 0);
+  }, 50);
 });
 $(".sound button").on("touchstart", function(e) {
   $(this).children("audio").get(0).play();
@@ -25,6 +28,8 @@ $(".sound button").on("touchstart", function(e) {
 });
 $(".sound button").on("touchend", function(e) {
   $(this).children("audio").removeAttr("loop");
+  $(this).children("audio").get(0).pause();
+  $(this).children("audio").get(0).currentTime = 0;
 });
 
 $("#touchpad").on("move", function(e) {
@@ -50,29 +55,42 @@ function move(x, y) {
   $("#knob").css({"transform": "translate(" + x + "px, " + -y + "px)"});
 
   console.log("hoverXY",x,y);
-  var vX = (x/MAX_X) * MOV_SPEED;
-  var vY = (y/MAX_Y) * MOV_SPEED;
+  var vX = (Math.min(x, MAX_X)/MAX_X) * MOV_SPEED;
+  var vY = (Math.min(y, MAX_Y)/MAX_Y) * MOV_SPEED;
   console.log("vXY",vX,vY);
-  robot(vX, vY, 0);
+  robot(Math.floor(vX), Math.floor(vY), 0);
 }
 
+function cl() {
+  robot(0, 0, 60);
+}
+function ccl() {
+  robot(0, 0, -60);
+}
 function wiggle() {
-  robot(0, -200, 0);
+  robot(-MOV_SPEED*0.3, 0, 0);
   setTimeout(function() {
-    robot(0, 200, 0);
+    robot(MOV_SPEED*0.3, 0, 0);
     setTimeout(function() {
-      robot(0, -200, 0);
+      robot(-MOV_SPEED*0.3, 0, 0);
       setTimeout(function() {
-        robot(0, 200, 0);
+        robot(MOV_SPEED*0.3, 0, 0);
+        setTimeout(function() {
+          robot(-MOV_SPEED*0.3, 0, 0);
+          setTimeout(function() {
+            robot(MOV_SPEED*0.3, 0, 0);
+            setTimeout(function() {
+              robot(0, 0, 0);
+            }, 320);
+          }, 320);
+        }, 320);
       }, 320);
     }, 320);
   }, 320);
 }
 
-function robot(x, y, r) {
+function robot(y, x, r) {
   $.post(
-    "http://172.26.201.2:1337/x" + x + "y" + y + "r" + r
+    "http://172.26.201.2:1337/x" + x + "y" + -y + "r" + r
   );
 }
-
-function sign(x) { return x > 0 ? 1 : x < 0 ? -1 : 0; }
