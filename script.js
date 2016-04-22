@@ -22,11 +22,11 @@ $("#wiggle-button, #rot-cl-button, #rot-ccl-button").on("touchend", function(e) 
     move(0, 0);
   }, 50);
 });
-$(".sound button").on("touchstart", function(e) {
+$(".sound-button").on("touchstart", function(e) {
   $(this).children("audio").get(0).play();
   $(this).children("audio").attr("loop", "");
 });
-$(".sound button").on("touchend", function(e) {
+$(".sound-button").on("touchend", function(e) {
   $(this).children("audio").removeAttr("loop");
   $(this).children("audio").get(0).pause();
   $(this).children("audio").get(0).currentTime = 0;
@@ -62,10 +62,10 @@ function move(x, y) {
 }
 
 function cl() {
-  robot(0, 0, 60);
+  robot(0, 0, -80);
 }
 function ccl() {
-  robot(0, 0, -60);
+  robot(0, 0, 80);
 }
 function wiggle() {
   robot(-MOV_SPEED*0.3, 0, 0);
