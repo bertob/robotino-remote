@@ -37,7 +37,6 @@ $("#wiggle-button, #rot-cl-button, #rot-ccl-button").on("touchend", function(e) 
 });
 $(".sound-button").on("touchstart", function(e) {
   $(this).children("audio").get(0).play();
-  console.log("yo");
   // $(this).children("audio").attr("loop", "");
 });
 // $(".sound-button").on("touchend", function(e) {
@@ -59,7 +58,6 @@ $("#touchpad").on("moveend", function(e) {
 });
 
 function hover(pX, pY) {
-  // console.log("everyday im hovering", pX, pY);
   var rect = $("#touchpad").get(0).getBoundingClientRect();
   hoverX = (pX - rect.left) - TOUCHPAD_SIZE/2;
   hoverY = -((pY - rect.top) - TOUCHPAD_SIZE/2);
@@ -69,20 +67,16 @@ function move(x, y) {
   var h = Math.sqrt(x*x + y*y);
   var r = TOUCHPAD_SIZE/2 - KNOB_SIZE/2 + 20;
   if (h > r) {
-    console.log("x",x,"y",y);
     var a = Math.atan(y/x);
     x = r * Math.cos(a) * sign(x);
     var k = 1;
     if ((y < 0 && x > 0) || (y > 0 && x < 0)) k = -1;
     y = r * Math.sin(a) * sign(y) * k;
-    console.log("x2",x,"y2",y);
   }
   $("#knob").css({"transform": "translate(" + x + "px, " + -y + "px)"});
 
-  // console.log("hoverXY",x,y);
   var vX = (Math.min(x, MAX_X)/MAX_X) * MOV_SPEED;
   var vY = (Math.min(y, MAX_Y)/MAX_Y) * MOV_SPEED;
-  // console.log("vXY",vX,vY);
   robot(Math.floor(vX), Math.floor(vY), 0);
 }
 
