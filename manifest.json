@@ -1,0 +1,15 @@
+{
+  "short_name": "Robotino",
+  "name": "Robotino",
+  "icons": [
+    {
+      "src": "apple-touch-icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/index.html",
+  "display": "fullscreen",
+  "orientation": "landscape",
+  "background_color": "black"
+}

@@ -2,7 +2,9 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>Robotino</title>
@@ -18,27 +20,17 @@
         <button class="button big" id="rot-cl-button"></button>
         <button class="button big" id="rot-ccl-button"></button>
       </section>
+
       <button class="button big" id="wiggle-button"></button>
+
       <section class="button-group">
-        <button class="button sound-button coin">
-          <audio loop src="sounds/coin.mp3">
-          </button>
-          <button class="button sound-button wowowo">
-            <audio src="sounds/wowowo.mp3">
-            </button>
-            <button class="button sound-button dupdupdup">
-              <audio src="sounds/dupdupdup.mp3">
-              </button>
-              <button class="button sound-button tutu">
-                <audio src="sounds/tutu.mp3">
-                </button>
-                <button class="button sound-button">
-                  <audio src="sounds/tutu.mp3">
-                  </button>
-                  <button class="button sound-button">
-                    <audio src="sounds/tutu.mp3">
-                    </button>
-                  </section>
+        <button class="button sound-button coin"><audio src="sounds/coin.mp3"></button>
+        <button class="button sound-button wowowo"><audio src="sounds/wowowo.mp3"></button>
+        <button class="button sound-button dupdupdup"><audio src="sounds/dupdupdup.mp3"></button>
+        <button class="button sound-button tutu"><audio src="sounds/tutu.mp3"></button>
+        <button class="button sound-button crash"><audio src="sounds/crash.mp3"></button>
+        <button class="button sound-button confused"><audio src="sounds/confused.mp3"></button>
+      </section>
 
     </section>
 

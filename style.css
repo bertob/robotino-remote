@@ -11,10 +11,12 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 body {
   margin: 0;
   overflow: hidden;
+  height: 100vh;
   font-family: "Fira Sans", sans-serif;
   font-size: 18px;
   font-weight: 500;
@@ -24,6 +26,9 @@ body {
 img {
   pointer-events: none;
 }
+audio {
+  display: none;
+}
 button {
   cursor: pointer;
   outline: none;
@@ -31,24 +36,16 @@ button {
   font-family: inherit;
   font-size: inherit;
   border-radius: 10px;
-  transition: all 0.3s ease-out;
-}
-button.inactive {
-  opacity: 0.2;
-  transform: scale(0.75);
-  pointer-events: none;
-  transition: all 0.3s ease-out;
+  transition: all 0.09s ease-out;
 }
 button:active {
-  transform: scale(1.1);
+  transform: scale(0.9);
 }
 :focus {
   outline: none;
 }
 ::-moz-focus-inner {
   border: 0;
-}
-.button, .knob {
 }
 
 /* LAYOUT */
@@ -62,13 +59,14 @@ body {
 }
 .main-panel {
   position: absolute;
-  left: 20px;
+  left: 0;
+  top: 0;
   height: 100vh;
   width: 75%;
 }
 .touchpad {
   position: relative;
-  left: 20px;
+  left: 10px;
   height: 600px;
   width: 600px;
   margin-top: 40px;
@@ -87,9 +85,10 @@ body {
   background-image: url(img/move.svg);
   background-position: center center;
   background-repeat: no-repeat;
-  background-size: 90px;
+  background-size: 80%;
   border-radius: 500px;
   cursor: pointer;
+  z-index: 1000;
 }
 
 .button {
@@ -99,18 +98,18 @@ body {
   background-color: #f81968;
   background-repeat: no-repeat;
   background-position: center center;
-  background-size: 110px;
+  background-size: 80%;
   border-radius: 200px;
 }
 #rot-cl-button {
   bottom: 30px;
-  left: 40px;
+  left: 30px;
   background-color: #19fb73;
   background-image: url(img/cl.svg);
 }
 #rot-ccl-button {
   bottom: 30px;
-  left: 560px;
+  left: 550px;
   background-color: #feff39;
   background-image: url(img/ccl.svg);
 }
@@ -149,9 +148,62 @@ body {
   background-color: #0f81ff;
 }
 .dupdupdup {
-  background-color: #19fb73;
+  background-color: #fff;
 }
 .tutu {
+  background-color: #fb8919;
+}
+.crash {
   background-color: #f81968;
-  background-color: #fff;
+}
+.confused {
+  background-color: #19fb73;
+}
+
+@media screen and (max-width: 800px) {
+  .container {
+    transform: translateY(-10px);
+  }
+  .touchpad {
+    position: absolute;
+    top: -20px;
+    left: 43px;
+    height: 300px;
+    width: 300px;
+  }
+  .knob {
+    top: calc(50% - 50px);
+    left: calc(50% - 50px);
+    width: 100px;
+    height: 100px;
+  }
+  .button {
+    width: 90px;
+    height: 90px;
+  }
+  .button.big {
+    left: 0px;
+  }
+  #rot-cl-button {
+    top: 25px;
+    left: 0px;
+  }
+  #rot-ccl-button {
+    top: 125px;
+    left: 0px;
+  }
+  #wiggle-button {
+    top: 225px;
+    left: 0px;
+  }
+  .button-group {
+    top: 25px;
+    right: -5px;
+    width: 220px;
+    height: 300px;
+  }
+  .sound-button {
+    width: 90px;
+    height: 90px;
+  }
 }
